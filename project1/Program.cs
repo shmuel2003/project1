@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,11 +41,14 @@ namespace project1
                 Console.Write(lst1[i]);
             }
         }
-
+        static void sorted()
+        {
+            lst1.CopyTo
+            lst1.Sort();
+        }
         static bool Positive(int number)
         {
             return number >= 0;
         }
-
     }
 }
