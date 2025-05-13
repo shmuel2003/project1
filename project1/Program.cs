@@ -11,7 +11,6 @@ namespace project1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("bdgfd");
         }
         static List<int> lst1 = new List<int>();
         static void insertByUser()
@@ -51,6 +50,19 @@ namespace project1
                 Console.Write(i);
             }
         }
+        static void maxNum()
+        {
+            int numBig = 0;
+            foreach(int number in lst1)
+            {
+                if (number > numBig)
+                {
+                    numBig = number;
+                }
+            }
+            Console.WriteLine("The max num in list is "+numBig);
+        }
+
         static bool Positive(int number)
         {
             return number >= 0;
