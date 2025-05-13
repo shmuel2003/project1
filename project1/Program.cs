@@ -77,8 +77,9 @@ namespace project1
                 Console.Write(i + " ");
             }
         }
-        static void ChoiceUser(List<int> lstUser)
+        static void Menu()
         {
+            List<int> lstUser = new List<int>(InsertByUser());
             bool isProper = true;
             while (isProper)
             {
@@ -97,8 +98,7 @@ namespace project1
                 switch (choice)
                 {
                     case 'a':
-                        InsertByUser();
-                        isProper = false;
+                        lstUser = InsertByUser();
                         break;
                     case 'b':
                         printLst(lstUser);
@@ -133,25 +133,25 @@ namespace project1
                 }
             }
         }
-        static void InsertByUser()
+        static List<int> InsertByUser()
         {
             List<int> lstUser = new List<int>();
             int num;
             do
             {
                 Console.WriteLine("Enter at least 3 number, to stop press -1");
-                num = int.Parse(Console.ReadLine());
-                if (Positive(num))
+                
+                if (int.TryParse(Console.ReadLine(),out num) && (Positive(num)))
                 {
                     lstUser.Add(num);
                 }
             }
             while (num != -1 || lstUser.Count < 3);
-            ChoiceUser(lstUser);
+            return lstUser;
         }
         static void Main(string[] args)
         {
-            InsertByUser();
+            Menu();
         }
     }
 }
