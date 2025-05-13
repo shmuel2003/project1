@@ -9,10 +9,12 @@ namespace project1
 {
     internal class Program
     {
+        //מקבלת מספר ומחזירה ערך בוליאני אם המספר חיובי בהתאם
         static bool Positive(int number)
         {
             return number >= 0;
         }
+        //מקבלת ליסט ומחזירה ליסט חדש הפוך
         static List<int> ReverseList(List<int> lstUser)
         {
             List<int>lstReverse = new List<int>(lstUser);
@@ -22,12 +24,14 @@ namespace project1
             }
             return lstReverse;
         }
+        //מקבלת ליסט ומחזירה ליסט חדש ממויין בסדר עולה
         static List<int>Sorted(List<int> lstUser)
         {
             List<int>lstSort = new List<int> (lstUser);
             lstSort.Sort();
             return lstSort;
         }
+        //מקבלת ליסט ומחזירה את המספר הכי גבוה
         static int MaxNum(List<int> lstUser)
         {
             int numBig = 0;
@@ -40,6 +44,7 @@ namespace project1
             }
             return numBig;
         }
+        //מקבלת ליסט ומחזירה את המספר הכי נמוך
         static int MinNum(List<int> lstUser)
         {
             int numMin = lstUser[0];
@@ -52,6 +57,7 @@ namespace project1
             }
             return numMin;
         }
+        //מקבלת ליסט ומחזירה את האורך שלו
         static int CountList(List<int> lstUser)
         {
             int count = 0;
@@ -59,6 +65,7 @@ namespace project1
                 count++;
             return count;
         }
+        //מקבלת ליסט ומחזירה את סכום האיברים בו
         static int SumList(List<int> lstUser)
         {
             int sum = 0;
@@ -66,17 +73,20 @@ namespace project1
                 sum += number;
             return sum;
         }
+        //מקבלת ליסט ומחזירה את ממוצע המספרים שבו
         static float AvgList(List<int> lstUser)
         {
             return SumList(lstUser) / CountList(lstUser);
         }
-        static void printLst(List<int> lstUser)
+        //מקבלת ליסט ומדפיסה אותו בשורה אחת עם רווחים
+        static void PrintLst(List<int> lstUser)
         {
             foreach (int i in lstUser)
             {
                 Console.Write(i + " ");
             }
         }
+        //מקבלת סדרה של מספרים, מדפיסה תפריט למשתמש ומפעילה את הפונקציות בהתאם לבחירה שלו
         static void Menu()
         {
             List<int> lstUser = new List<int>(InsertByUser());
@@ -93,7 +103,7 @@ namespace project1
                 "g. Display the Average of the series.\n" +
                 "h. Display the Number of elements in the series.\n" +
                 "i. Display the Sum of the series.\n" +
-                "j. Exit.");
+                "j. Exit.\n");
                 char choice = Console.ReadLine()[0];
                 switch (choice)
                 {
@@ -101,13 +111,13 @@ namespace project1
                         lstUser = InsertByUser();
                         break;
                     case 'b':
-                        printLst(lstUser);
+                        PrintLst(lstUser);
                         break;
                     case 'c':
-                        printLst(ReverseList(lstUser));
+                        PrintLst(ReverseList(lstUser));
                         break;
                     case 'd':
-                        printLst(Sorted(lstUser));
+                        PrintLst(Sorted(lstUser));
                         break;
                     case 'e':
                         Console.WriteLine(MaxNum(lstUser));
@@ -133,6 +143,7 @@ namespace project1
                 }
             }
         }
+        //מקבלת מהמשתמש סדרה של מספרים, מאמתת, ומחזירה אותם בליסט
         static List<int> InsertByUser()
         {
             List<int> lstUser = new List<int>();
@@ -149,6 +160,7 @@ namespace project1
             while (num != -1 || lstUser.Count < 3);
             return lstUser;
         }
+        //הפונקציה הראשית שמפעילה את התוכנית
         static void Main(string[] args)
         {
             Menu();
