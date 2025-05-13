@@ -17,7 +17,7 @@ namespace project1
         //מקבלת ליסט ומחזירה ליסט חדש הפוך
         static List<int> ReverseList(List<int> lstUser)
         {
-            List<int>lstReverse = new List<int>(lstUser);
+            List<int>lstReverse = new List<int>();
             for (int i=lstUser.Count-1; i>=0; i--)
             {
                 lstReverse.Add(lstUser[i]);
@@ -85,11 +85,48 @@ namespace project1
             {
                 Console.Write(i + " ");
             }
+            Console.WriteLine("\n");
         }
-        //מקבלת סדרה של מספרים, מדפיסה תפריט למשתמש ומפעילה את הפונקציות בהתאם לבחירה שלו
-        static void Menu()
+
+        //מקבלת מהמשתמש סדרה של מספרים, מאמתת, ומחזירה אותם בליסט
+        static List<int> InsertByUser()
         {
-            List<int> lstUser = new List<int>(InsertByUser());
+            List<int> lstUser = new List<int>();
+            int num;
+            do
+            {
+                Console.WriteLine("Enter at least 3 number, to stop press -1");
+                
+                if (int.TryParse(Console.ReadLine(),out num) && (Positive(num)))
+                {
+                    lstUser.Add(num);
+                }
+            }
+            while (num != -1 || lstUser.Count < 3);
+            return lstUser;
+        }
+
+        //int בתור סטרינג, מאמתת אותו אם יש מספרים חיוביים ומחזירה אותם בליסט של args מקבלת את
+        static List<int> InsertByArgs(string [] args)
+        { 
+            int num;
+            List<int> lstArgs = new List<int>();
+            foreach (string arg in args)
+            {
+                if (int.TryParse(arg, out num) && (Positive(num)))
+                {
+                    lstArgs.Add(num);
+                }
+            }
+            if (lstArgs.Count < 3)
+                return InsertByUser();
+            return lstArgs;
+        }
+
+        //מקבלת סדרה של מספרים, מדפיסה תפריט למשתמש ומפעילה את הפונקציות בהתאם לבחירה שלו
+        static void Menu(string[] args)
+        {
+            List<int> lstUser = new List<int>(InsertByArgs(args));
             bool isProper = true;
             while (isProper)
             {
@@ -120,19 +157,19 @@ namespace project1
                         PrintLst(Sorted(lstUser));
                         break;
                     case 'e':
-                        Console.WriteLine(MaxNum(lstUser));
+                        Console.WriteLine(MaxNum(lstUser) + "\n");
                         break;
                     case 'f':
-                        Console.WriteLine(MinNum(lstUser));
+                        Console.WriteLine(MinNum(lstUser) + "\n");
                         break;
                     case 'g':
-                        Console.WriteLine(AvgList(lstUser));
+                        Console.WriteLine(AvgList(lstUser) + "\n");
                         break;
                     case 'h':
-                        Console.WriteLine(CountList(lstUser));
+                        Console.WriteLine(CountList(lstUser) + "\n");
                         break;
                     case 'i':
-                        Console.WriteLine(SumList(lstUser));
+                        Console.WriteLine(SumList(lstUser) + "\n");
                         break;
                     case 'j':
                         isProper = false;
@@ -143,27 +180,11 @@ namespace project1
                 }
             }
         }
-        //מקבלת מהמשתמש סדרה של מספרים, מאמתת, ומחזירה אותם בליסט
-        static List<int> InsertByUser()
-        {
-            List<int> lstUser = new List<int>();
-            int num;
-            do
-            {
-                Console.WriteLine("Enter at least 3 number, to stop press -1");
-                
-                if (int.TryParse(Console.ReadLine(),out num) && (Positive(num)))
-                {
-                    lstUser.Add(num);
-                }
-            }
-            while (num != -1 || lstUser.Count < 3);
-            return lstUser;
-        }
+
         //הפונקציה הראשית שמפעילה את התוכנית
         static void Main(string[] args)
         {
-            Menu();
+            Menu(args);
         }
     }
 }
