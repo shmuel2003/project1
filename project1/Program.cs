@@ -11,6 +11,7 @@ namespace project1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("bdgfd");
         }
         static List<int> lst1 = new List<int>();
         static void insertByUser()
@@ -43,8 +44,12 @@ namespace project1
         }
         static void sorted()
         {
-            lst1.CopyTo
-            lst1.Sort();
+            List<int> lst2 = lst1;
+            lst2.Sort();
+            foreach (int i in lst2)
+            {
+                Console.Write(i);
+            }
         }
         static bool Positive(int number)
         {
