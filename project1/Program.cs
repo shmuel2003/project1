@@ -12,8 +12,12 @@ namespace project1
         static void Main(string[] args)
         {
         }
-        static List<int> lst1 = new List<int>();
-        static void insertByUser()
+        static List<int> lstUser = new List<int>();
+        static bool Positive(int number)
+        {
+            return number >= 0;
+        }
+        static void InsertByUser()
         {
             int num;
             do
@@ -22,50 +26,71 @@ namespace project1
                 num = int.Parse(Console.ReadLine());
                 if (Positive(num))
                 {
-                    lst1.Add(num);
+                    lstUser.Add(num);
                 }
             }
-            while (num != -1 || lst1.Count < 3);
+            while (num != -1 || lstUser.Count < 3);
         }
         static void printLst()
         {
-            foreach (int i in lst1)
+            foreach (int i in lstUser)
             {
-                Console.Write(i);
+                Console.Write(i+" ");
             }
         }
-        static void printReverse()
+        static List<int> ReverseList()
         {
-            for(int i=lst1.Count-1; i>=0; i--)
+            List<int>lstReverse = new List<int>(lstUser);
+            for (int i=lstUser.Count-1; i>=0; i--)
             {
-                Console.Write(lst1[i]);
+                lstReverse.Add(lstUser[i]);
             }
+            return lstReverse;
         }
-        static void sorted()
+        static List<int>Sorted()
         {
-            List<int> lst2 = lst1;
-            lst2.Sort();
-            foreach (int i in lst2)
-            {
-                Console.Write(i);
-            }
+            List<int>lstSort = new List<int> (lstUser);
+            lstSort.Sort();
+            return lstSort;
         }
-        static void maxNum()
+        static int MaxNum()
         {
             int numBig = 0;
-            foreach(int number in lst1)
+            foreach(int number in lstUser)
             {
                 if (number > numBig)
                 {
                     numBig = number;
                 }
             }
-            Console.WriteLine("The max num in list is "+numBig);
+            return numBig;
+        }
+        static int MinNum()
+        {
+            int numMin = lstUser[0];
+            for (int i = 1; i < lstUser.Count; i++)
+            {
+                if(lstUser[i] < numMin)
+                {
+                    numMin = lstUser[i];
+                }
+            }
+            return numMin;
+        }
+        static int CountList()
+        {
+            int count = 0;
+            foreach(int number in lstUser)
+                count++;
+            return count;
+        }
+        static int SumList()
+        {
+            int sum = 0;
+            foreach (int number in lstUser)
+                sum += number;
+            return sum;
         }
 
-        static bool Positive(int number)
-        {
-            return number >= 0;
-        }
     }
 }
