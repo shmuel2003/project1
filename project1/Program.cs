@@ -98,6 +98,7 @@ namespace project1
                 {
                     case 'a':
                         InsertByUser();
+                        isProper = false;
                         break;
                     case 'b':
                         printLst(lstUser);
