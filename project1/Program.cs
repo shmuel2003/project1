@@ -91,18 +91,24 @@ namespace project1
         //מקבלת מהמשתמש סדרה של מספרים, מאמתת, ומחזירה אותם בליסט
         static List<int> InsertByUser()
         {
-            List<int> lstUser = new List<int>();
             int num;
-            do
+            List<int> lstUser = new List<int>();
+            while (lstUser.Count < 3)
             {
-                Console.WriteLine("Enter at least 3 number, to stop press -1");
-                
-                if (int.TryParse(Console.ReadLine(),out num) && (Positive(num)))
+                Console.WriteLine("Enter series at least 3 organs");
+                string series = Console.ReadLine();
+                List<string> lstseries = new List<string>(series.Split(' '));
+                for (int i = 0; i < lstseries.Count; i++)
                 {
-                    lstUser.Add(num);
+                    if (int.TryParse(lstseries[i], out num) && (Positive(num)))
+                    {
+                        lstUser.Add(num);
+                        continue;
+                    }
+                    Console.WriteLine("The series is not valid.\n");
+                    break;
                 }
             }
-            while (num != -1 || lstUser.Count < 3);
             return lstUser;
         }
 
